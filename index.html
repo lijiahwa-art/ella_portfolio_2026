@@ -117,9 +117,9 @@
   .hero-line{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(2.8rem,6.6vw,5.4rem);line-height:1.08;letter-spacing:.01em;margin:0;color:var(--cream);max-width:16ch;text-wrap:balance}
   .hero-line .hl{color:var(--olive-2)}
   .hero-line .q{color:var(--gold)}
-  .hero .rule{height:1px;width:150px;background:linear-gradient(90deg,transparent,var(--olive-2) 28%,#dcc987 50%,var(--olive-2) 72%,transparent);margin:36px 0;transform-origin:center;box-shadow:0 0 14px rgba(220,201,135,.22)}
+  .hero .rule{height:1px;width:150px;background:rgba(239,233,219,.5);margin:36px 0;transform-origin:center}
   .hero .role{font-family:var(--latin-serif-cjk-sans);font-size:clamp(1rem,2vw,1.35rem);color:var(--cream);margin:0;font-weight:600;letter-spacing:.14em}
-  .hero .role .x{font-family:var(--sans);color:var(--gold);font-style:normal;margin:0 .34em;font-weight:600;font-size:1.26em;vertical-align:-.02em}
+  .hero .role .x{font-family:var(--sans);color:var(--cream);font-style:normal;margin:0 .34em;font-weight:600;font-size:1.26em;vertical-align:-.02em}
   .scroll-cue{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--cream-dim);margin-top:44px;letter-spacing:.05em;position:relative;padding-bottom:54px}
   .scroll-cue::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:1px;height:42px;background:var(--line-l)}
   .scroll-cue::before{content:"";position:absolute;left:50%;bottom:0;width:1px;height:18px;background:var(--olive-2);animation:scrolldown 1.4s ease-in-out infinite;z-index:1}
@@ -341,7 +341,7 @@
   }
 
   /* CONTACT (dark) */
-  .contact{color:var(--cream);text-align:center;overflow:hidden;
+  .contact{color:var(--cream);text-align:center;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(90px,12vh,150px);padding-bottom:clamp(60px,8vh,96px);
     background:radial-gradient(80% 110% at 50% 0%,rgba(125,122,65,.15),transparent 52%),radial-gradient(60% 80% at 90% 100%,rgba(220,201,135,.06),transparent 60%),linear-gradient(158deg,#3a3124 0%,#2c2418 55%,#231c13 100%)}
   .contact h2{font-size:clamp(1.9rem,4.2vw,3rem);margin-bottom:8px;color:var(--cream)}
   .contact .lat{font-family:var(--serif);font-style:italic;color:var(--olive-2);font-size:.5em;display:block;margin:0 0 .3em;letter-spacing:.05em}
@@ -711,7 +711,7 @@
 </section>
 
 <!-- CONTACT -->
-<section class="contact fit" id="contact">
+<section class="contact" id="contact">
   <div class="wrap">
     <div class="reveal">
       <h2><span class="lat">Let's talk</span>期待有機會合作</h2>
@@ -730,14 +730,30 @@
 
 <footer>
   <span>李佳樺 Ella Li</span>
-  <span>Growth Marketing · 2026</span>
+  <span>Portfolio · 2026</span>
 </footer>
 
 <script>
   const nav=document.getElementById('nav'),prog=document.getElementById('progress');
-  const onScroll=()=>{const y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
-    prog.style.width=(h>0?(y/h*100):0)+'%';nav.classList.toggle('solid',y>40);};
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  // progress bar (robust to window- or container-scroll)
+  const onScroll=(e)=>{const doc=document.documentElement;
+    const y=window.scrollY||doc.scrollTop||document.body.scrollTop||0;
+    const h=(doc.scrollHeight-innerHeight)||0;
+    prog.style.width=(h>0?(y/h*100):0)+'%';};
+  addEventListener('scroll',onScroll,{passive:true});
+  document.addEventListener('scroll',onScroll,{passive:true,capture:true});
+  onScroll();
+  // solid nav background via IntersectionObserver on the hero -> works even when the page
+  // is inside a scroll container / iframe (where window.scrollY never changes)
+  const heroEl=document.querySelector('.hero');
+  const setSolid=(on)=>nav.classList.toggle('solid',on);
+  if(heroEl&&'IntersectionObserver'in window){
+    new IntersectionObserver((ents)=>{ents.forEach(en=>setSolid(en.intersectionRatio<0.6));},
+      {threshold:[0,0.3,0.6,0.9,1]}).observe(heroEl);
+  }else{
+    const sc=()=>setSolid((window.scrollY||document.documentElement.scrollTop||0)>40);
+    addEventListener('scroll',sc,{passive:true});document.addEventListener('scroll',sc,{passive:true,capture:true});sc();
+  }
 
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   const fine=matchMedia('(pointer:fine)').matches;
@@ -817,14 +833,21 @@
   }
 
   const fmt=(v,dec)=>{const n=dec>0?v.toFixed(dec):Math.round(v).toString();return dec>0?n:n.replace(/\B(?=(\d{3})+(?!\d))/g,',');};
-  function runCount(el){const to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0',10);if(isNaN(to))return;if(reduce){el.textContent=fmt(to,dec);return;}
+  function runCount(el){const to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0',10);if(isNaN(to))return;
     const dur=1300,t0=performance.now();const step=(t)=>{let p=Math.min((t-t0)/dur,1);p=1-Math.pow(1-p,3);
       el.textContent=fmt(to*p,dec);if(p<1)requestAnimationFrame(step);else el.textContent=fmt(to,dec);};requestAnimationFrame(step);}
-  const nums=document.querySelectorAll('.num[data-to]');
+  const nums=[...document.querySelectorAll('.num[data-to]')];
+  const fireNum=(el)=>{if(el.dataset.counted)return;el.dataset.counted='1';runCount(el);};
   if('IntersectionObserver'in window){
-    const nio=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){runCount(en.target);nio.unobserve(en.target)}})},{threshold:.6});
+    const nio=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){fireNum(en.target);nio.unobserve(en.target);}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});
     nums.forEach(n=>nio.observe(n));
   }
+  // fallback for hosts where IntersectionObserver's viewport doesn't match the real scroller
+  const numScan=()=>{const vh=innerHeight||document.documentElement.clientHeight;
+    nums.forEach(n=>{if(n.dataset.counted)return;const r=n.getBoundingClientRect();if(r.top<vh*0.9&&r.bottom>0)fireNum(n);});};
+  addEventListener('scroll',numScan,{passive:true});
+  document.addEventListener('scroll',numScan,{passive:true,capture:true});
+  addEventListener('resize',numScan,{passive:true});
 
   document.querySelectorAll('.p-toggle').forEach(btn=>{const panel=btn.nextElementSibling;
     btn.addEventListener('click',()=>{const open=btn.getAttribute('aria-expanded')==='true';
