@@ -1137,8 +1137,9 @@ body.vbox-lock{overflow:hidden}
     const back=()=>{const t=from||tiles[0];hidePill();try{t.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});}catch(e){t.scrollIntoView();}};
     tiles.forEach(t=>t.addEventListener('click',e=>{
       e.preventDefault();
-      if(!canHover&&!t.classList.contains('flipped')){tiles.forEach(o=>o.classList.remove('flipped'));t.classList.add('flipped');return;}
-      openProj(t);
+      if(t.dataset.busy)return;t.dataset.busy='1';
+      tiles.forEach(o=>{if(o!==t)o.classList.remove('flipped');});t.classList.add('flipped');
+      setTimeout(()=>{delete t.dataset.busy;openProj(t);},reduce?0:(canHover?120:420));
     }));
     document.addEventListener('click',e=>{if(!e.target.closest('a.tile'))tiles.forEach(o=>o.classList.remove('flipped'));});
     pill.addEventListener('click',back);
