@@ -545,9 +545,100 @@ body.vbox-lock{overflow:hidden}
   .vbox-nav{display:none}
 }
 @media(prefers-reduced-motion:reduce){.vis-track{scroll-behavior:auto}.vis-track.in{animation:none}}
+
+/* =====================================================================
+   v2 refinement layer — rhythm, typography, surfaces, states
+   (same palette & tone; overrides earlier rules by source order)
+   ===================================================================== */
+html{scroll-padding-top:78px}
+.skip{position:fixed;left:16px;top:-64px;z-index:300;background:var(--cream);color:var(--espresso);padding:10px 18px;border-radius:999px;font-size:.85rem;letter-spacing:.06em;transition:top .25s}
+.skip:focus{top:calc(14px + env(safe-area-inset-top,0px))}
+
+/* vertical rhythm: content-sized sections, optically heavier bottom */
+section{padding-top:clamp(84px,9.5vw,148px);padding-bottom:clamp(96px,10.5vw,164px)}
+section.fit{min-height:0;display:block}
+
+/* section heads */
+.sec-head{margin-bottom:clamp(44px,5.4vw,78px)}
+h2{font-size:clamp(2rem,3.5vw,2.95rem);line-height:1.12;letter-spacing:.01em}
+h2 .en{margin:0 0 .55em}
+h3,.wname,.vtitle,.bk-go{text-wrap:balance}
+p,.wdesc,.cap{text-wrap:pretty}
+
+/* about */
+.bio{font-weight:500;font-size:clamp(1.06rem,1.3vw,1.2rem);line-height:2.05;letter-spacing:.02em;max-width:34em}
+
+/* results: more presence, quieter folded corner */
+.tile{min-height:178px}
+.tile.feature{min-height:228px}
+.face.front::after{width:16px;height:16px}
+.t-cream .face.front::after{background:linear-gradient(225deg,var(--espresso) 50%,rgba(37,32,25,.1) 50%)}
+@media(hover:hover){.tile.flip:hover .face.front::after{width:24px;height:24px}}
+
+/* work list: outline category tags (lighter rows), fill on hover */
+.wcat{background:transparent;color:var(--olive-deep);border-color:rgba(88,86,48,.42)}
+.wrow:hover .wcat{background:var(--olive-deep);border-color:var(--olive-deep);color:var(--cream)}
+
+/* experience: monochrome logos to match brand strip */
+.logo-box{background:transparent;border:0;padding:0;justify-content:flex-end}
+.logo-box img{filter:brightness(0);opacity:.6;transition:opacity .35s}
+.job:hover .logo-box img{opacity:.92}
+
+/* skills: editorial ruled list instead of 3-up cards */
+.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(40px,6vw,96px);row-gap:0}
+.skill{padding:30px 0 34px;position:relative}
+.skill::after{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--olive);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.skill:hover::after{transform:scaleX(1)}
+.skill h3{flex-wrap:wrap;row-gap:2px}
+/* credentials: one ruled band instead of three boxes */
+.creds{gap:0;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
+.cred{background:none;border:0;border-radius:0;border-left:1px solid var(--line-d);padding:30px clamp(20px,2.6vw,36px) 32px}
+.cred:first-child{border-left:0;padding-left:0}
+
+/* tactile grain (desktop only, very low) */
+.grain{display:block;opacity:.035;mix-blend-mode:normal;z-index:60}
+
+/* pressed states */
+.btn:not(.is-static):active,.vchip:active,.to-results:active,.vis-btn:active:not(:disabled){transform:translateY(1px) scale(.985)}
+.vchip{transition:background .3s,color .3s,border-color .3s,transform .15s}
+
+@media(max-width:860px){
+  .tile{min-height:150px}.tile.feature{min-height:178px}
+  .skill-grid{grid-template-columns:1fr}
+  .cred{border-left:0;border-top:1px solid var(--line-d);padding:24px 0}
+  .cred:first-child{border-top:0}
+  .logo-box{justify-content:flex-start;width:auto;height:auto;margin-top:14px}
+}
+@media(max-width:760px),(prefers-reduced-motion:reduce){.grain{display:none}}
+@media(max-width:560px){
+  section{padding-top:72px;padding-bottom:84px}
+  h2{font-size:1.9rem}
+}
+/* experience logos: optically matched sizes */
+.lg-ltrust{height:20px}.lg-tea{height:28px}.lg-17{height:15px}.lg-bv{height:11px}
+/* contact: stronger final beat */
+.contact h2{font-size:clamp(2rem,4vw,3.3rem)}
+/* larger hit areas for inline links */
+.cinfo .item a{display:inline-block;padding:8px 0}
+.cred-link{padding:10px 0 3px}
+.wbreak li a[href^="http"]{display:inline-block;padding:8px 0}
+@media(max-width:560px){
+  .traits{grid-template-columns:1fr}
+  .tile .tag{font-size:.72rem;letter-spacing:.16em}
+  .pm .l{font-size:.72rem}
+  .cinfo .item .tag{font-size:.74rem}
+}
+/* micro-label legibility floor (≥11.5px) */
+.tile .tag,.pm .l,.wcat{font-size:.72rem}
+.cinfo .item .tag{font-size:.74rem}
+@media(max-width:560px){
+  section{padding-top:64px;padding-bottom:72px}
+  .lg-ltrust{height:17px}.lg-tea{height:25px}.lg-17{height:13px}.lg-bv{height:10px}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">跳至主要內容</a>
 <div class="grain"></div>
 <div class="progress" id="progress"></div>
 
@@ -559,6 +650,7 @@ body.vbox-lock{overflow:hidden}
   </nav>
   <button class="navbtn" id="navbtn" aria-label="開啟選單" aria-expanded="false">選單</button>
 </header>
+<main id="main">
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -975,6 +1067,7 @@ body.vbox-lock{overflow:hidden}
   </div>
 </section>
 
+</main>
 <button class="to-results" id="toResults" type="button" hidden><i aria-hidden="true"></i>回到成效</button>
 
 <footer>
@@ -1017,10 +1110,13 @@ body.vbox-lock{overflow:hidden}
   // active section highlight
   const links=[...document.querySelectorAll('nav.menu a')];
   const byId=id=>links.find(l=>l.getAttribute('href')==='#'+id);
-  if('IntersectionObserver'in window){
-    const sio=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=byId(en.target.id);if(a)a.classList.add('active');}})},{rootMargin:'-45% 0px -50% 0px'});
-    ['about','results','work','visual','exp','skills','contact'].forEach(id=>{const s=document.getElementById(id);if(s)sio.observe(s);});
-  }
+  // active section = last section whose top passed 42% of the viewport (robust to jumps & iframes)
+  const secIds=['results','about','work','visual','exp','skills','contact'];let navRaf=0;
+  const navSync=()=>{navRaf=0;const mid=innerHeight*.42;let cur=null;
+    secIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=mid)cur=id;});
+    links.forEach(l=>l.classList.toggle('active',!!cur&&l.getAttribute('href')==='#'+cur));};
+  const navQ=()=>{if(!navRaf)navRaf=requestAnimationFrame(navSync);};
+  addEventListener('scroll',navQ,{passive:true});document.addEventListener('scroll',navQ,{passive:true,capture:true});addEventListener('resize',navQ);navSync();
 
   if(!reduce&&fine){
     document.querySelectorAll('.p-figure').forEach(f=>{const g=f.querySelector('.glow');if(!g)return;
