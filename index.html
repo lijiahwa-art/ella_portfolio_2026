@@ -670,6 +670,80 @@ p,.wdesc,.cap{text-wrap:pretty}
 /* nav CTA: olive fill for contrast */
 nav.menu a.nav-cta{background:var(--olive);border-color:var(--olive);color:var(--cream)}
 @media(max-width:760px){.wdata-full{border-left:0;padding-left:0}}
+
+/* ===== v3 glass layer: smoked-glass UI + CTA gloss + mobile layout fixes ===== */
+header.nav.solid{
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0)),rgba(40,34,26,.86)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+  border-bottom:1px solid rgba(239,233,219,.16)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px -16px rgba(0,0,0,.35)}
+header.nav.open{background:rgba(40,34,26,.93)!important;-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%)}
+nav.menu a.nav-cta{box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.to-results{
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),rgba(40,34,26,.42)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  border:1px solid rgba(239,233,219,.26)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 40px -18px rgba(0,0,0,.6)}
+.vbox-nav,.vbox-close{
+  background:rgba(239,233,219,.10)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-color:rgba(239,233,219,.26)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+/* contact CTAs: same glass language as nav */
+.contact .btn{border-radius:999px}
+.contact .btn.primary{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 16px 34px -18px rgba(0,0,0,.7)}
+.contact .btn.ghost{
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),rgba(40,34,26,.35);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  border:1px solid rgba(239,233,219,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 16px 34px -20px rgba(0,0,0,.7)}
+
+/* glass: zoom icon on visual cards (sits on the artwork) */
+.vframe::after{background-color:rgba(40,34,26,.32)!important;-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
+  border:1px solid rgba(239,233,219,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 14px -6px rgba(0,0,0,.45)}
+/* glass: lightbox caption bar */
+.vbox-fig figcaption{display:inline-block;padding:10px 20px 11px;border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02)),rgba(40,34,26,.45);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  border:1px solid rgba(239,233,219,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+/* glass: carousel arrows match lightbox controls */
+.vis-btn{background:rgba(239,233,219,.06);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-color:rgba(239,233,219,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+/* mobile menu panel */
+@media(max-width:860px){header.nav.open nav.menu a:not(.nav-cta){padding:10px 2px;border-bottom:1px solid rgba(239,233,219,.08)}}
+/* layout: results last card spans full row on mobile (no orphan) */
+@media(max-width:860px){.bento .tile:last-child{grid-column:span 2}}
+/* layout: mobile hero less empty space at the bottom */
+@media(max-width:760px){.hero{min-height:86svh;padding-top:104px;padding-bottom:40px}.hero-center{transform:none}.scroll-cue{margin-top:36px}}
+
+/* olive CTAs: soft gloss + a light sweep on hover */
+nav.menu a.nav-cta,.contact .btn.primary{position:relative;overflow:hidden;isolation:isolate;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.06) 48%,rgba(0,0,0,.06) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.18),0 10px 24px -14px rgba(0,0,0,.6)}
+nav.menu a.nav-cta::before,.contact .btn.primary::before{content:"";position:absolute;inset:-1px;z-index:-1;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.38) 48%,transparent 66%);transform:translateX(-130%)}
+@media(hover:hover){nav.menu a.nav-cta:hover::before,.contact .btn.primary:hover::before{transition:transform .9s cubic-bezier(.3,.6,.2,1);transform:translateX(130%)}}
+@media(prefers-reduced-motion:reduce){nav.menu a.nav-cta::before,.contact .btn.primary::before{display:none}}
+
+/* olive CTAs: bolder label */
+nav.menu a.nav-cta,.contact .btn.primary{font-weight:700;letter-spacing:.12em}
+
+
+
+/* about → work share the same ground: tighten the seam so it doesn't read as a gap */
+#about{padding-bottom:clamp(48px,5vw,80px)}
+@media(max-width:560px){#about{padding-bottom:40px}}
+
+/* mobile menu: keep 關閉 on the top row next to the brand */
+@media(max-width:860px){header.nav.open .navbtn{order:2;margin-left:auto}header.nav.open nav.menu{order:3}}
+/* anchor offset: land the section heading just under the fixed nav
+   (was: html scroll-padding 78px + section scroll-margin 78px = double offset, plus the section's top padding) */
+html{scroll-padding-top:0}
+section[id]{scroll-margin-top:calc(70px + 28px - clamp(84px,9.5vw,148px))}
+@media(max-width:860px){section[id]{scroll-margin-top:calc(66px + 22px - clamp(84px,9.5vw,148px))}}
+@media(max-width:560px){section[id]{scroll-margin-top:calc(66px + 20px - 64px)}}
+section#contact{scroll-margin-top:0}
+
+/* section heading scale: calmer Chinese title, refined English kicker */
+h2{font-size:clamp(1.9rem,3.1vw,2.6rem)}
+@media(max-width:560px){h2{font-size:1.9rem}}
+h2 .en{font-size:.48em}
 </style>
 </head>
 <body>
