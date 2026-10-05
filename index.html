@@ -739,6 +739,21 @@ nav.menu a.nav-cta,.contact .btn.primary{font-weight:700;letter-spacing:.12em}
 
 /* mobile menu: keep 關閉 on the top row next to the brand */
 @media(max-width:860px){header.nav.open .navbtn{order:2;margin-left:auto}header.nav.open nav.menu{order:3}}
+
+/* project ad screenshots (廣告紀錄) */
+.ad-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);align-items:start}
+.ad-shot{margin:0;min-width:0}
+.ad-frame{display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line-d);background:#fff;
+  box-shadow:0 18px 36px -24px rgba(37,32,25,.45);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.ad-frame img{display:block;width:100%;height:auto}
+@media(hover:hover){.ad-frame:hover{transform:translateY(-4px);box-shadow:0 26px 44px -26px rgba(37,32,25,.55)}}
+.ad-shot figcaption{margin-top:10px;font-family:var(--han);font-size:.8rem;letter-spacing:.08em;color:var(--ink-soft)}
+@media(max-width:760px){
+  .ad-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;padding-bottom:6px;scrollbar-width:none}
+  .ad-row::-webkit-scrollbar{display:none}
+  .ad-shot{flex:0 0 68%;scroll-snap-align:start}
+}
+.ad-row-2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}
 /* anchor offset: land the section heading just under the fixed nav
    (was: html scroll-padding 78px + section scroll-margin 78px = double offset, plus the section's top padding) */
 html{scroll-padding-top:0}
@@ -893,6 +908,13 @@ h2 .en{font-size:.48em}
 <li><b>全漏斗再行銷</b>針對高單價商品較長的決策週期，精準鎖定「觀看試看」與「加購未結帳」受眾遞送再行銷廣告，收斂猶豫客群。</li>
             </ul></div>
           </div>
+            <div class="wdata wdata-full wads">
+              <h5>In-Market<span>上線紀錄</span></h5>
+              <div class="ad-row ad-row-2">
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p01-meta-feed.webp" target="_blank" rel="noopener" aria-label="放大檢視：Meta 廣告・經驗背書"><img loading="lazy" decoding="async" src="ads-p01-meta-feed.webp" width="990" height="1397" alt="《45+ 財富自由行動攻略》Meta 動態影片廣告：十方老師經驗背書"></a><figcaption>Meta 廣告・經驗背書</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p01-meta-video.webp" target="_blank" rel="noopener" aria-label="放大檢視：Meta 廣告・痛點提問"><img loading="lazy" decoding="async" src="ads-p01-meta-video.webp" width="869" height="1140" alt="《45+ 財富自由行動攻略》Meta 影片廣告：痛點提問「是我想要的人生嗎？」"></a><figcaption>Meta 廣告・痛點提問</figcaption></figure>
+              </div>
+            </div>
             <div class="wdata wdata-full">
               <h5>Data Check<span>每週 CPA 與花費趨勢</span></h5>
               <figure class="wd-shot"><div class="wd-scroll"><img loading="lazy" src="project-01-weekly-cpa.webp" width="2000" height="378" alt="每週 Meta 花費與 Meta 後台 CPA 走勢圖：CPA 於 11/24 當週偏高，12/1 當週回落約 75%，同期花費提高至高點，12/1–12/8 兩週 CPA 維持低檔；刻度已遮蔽" decoding="async"></div><figcaption class="wd-hint">← 左右滑動查看 →</figcaption></figure>
@@ -962,6 +984,17 @@ h2 .en{font-size:.48em}
               <li><b>線上下一致</b>跨設計／門市／電商與廣代協作，掌控活動上線節奏，維持線上、線下通路一致性。</li>
             </ul></div>
           </div>
+            <div class="wdata wdata-full wads">
+              <h5>In-Market<span>上線紀錄</span></h5>
+              <div class="ad-row">
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p03-meta-2.webp" target="_blank" rel="noopener" aria-label="放大檢視：Meta 廣告"><img loading="lazy" decoding="async" src="ads-p03-meta-2.webp" width="870" height="1440" alt="小茶栽堂 2025 新春禮盒 Meta 廣告：1/7 前預購最高享 68 折"></a><figcaption>Meta 廣告</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p03-meta-3.webp" target="_blank" rel="noopener" aria-label="放大檢視：Meta 廣告"><img loading="lazy" decoding="async" src="ads-p03-meta-3.webp" width="677" height="791" alt="小茶栽堂 2025 新春禮盒 Meta 廣告：晚鳥倒數 滿千折百"></a><figcaption>Meta 廣告</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p03-line.webp" target="_blank" rel="noopener" aria-label="放大檢視：LINE LAP 原生廣告"><img loading="lazy" decoding="async" src="ads-p03-line.webp" width="870" height="1300" alt="小茶栽堂 藏金禮盒 LINE LAP 原生廣告"></a><figcaption>LINE LAP 原生廣告</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p03-google.webp" target="_blank" rel="noopener" aria-label="放大檢視：Google 關鍵字廣告"><img loading="lazy" decoding="async" src="ads-p03-google.webp" width="1352" height="546" alt="小茶栽堂 Google 關鍵字廣告：搜尋「過年 禮盒」時的贊助商廣告"></a><figcaption>Google 關鍵字廣告</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="pr-p03-kol.webp" target="_blank" rel="noopener" aria-label="放大檢視：KOL 公關品分享"><img loading="lazy" decoding="async" src="pr-p03-kol.webp" width="820" height="1335" alt="小茶栽堂 2025 新春禮盒 KOL 公關品分享（Instagram 限時動態）"></a><figcaption>KOL 公關品分享</figcaption></figure>
+                <figure class="ad-shot"><a class="ad-frame" href="pr-p03-media.webp" target="_blank" rel="noopener" aria-label="放大檢視：媒體露出"><img loading="lazy" decoding="async" src="pr-p03-media.webp" width="520" height="576" alt="鏡新聞【好禮特輯】小茶栽堂獨創馬卡龍牛軋糖 春節禮盒送出獨一無二"></a><figcaption>媒體露出</figcaption></figure>
+              </div>
+            </div>
         </div></div></div>
       </article>
 
