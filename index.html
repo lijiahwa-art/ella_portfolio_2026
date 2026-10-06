@@ -22,7 +22,7 @@
 <link rel="preload" as="image" href="hero.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Outfit:wght@300;400;500;600&family=Noto+Serif+TC:wght@500;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap">
 
 <style>
   :root{
@@ -554,7 +554,7 @@ body.vbox-lock{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.vis-track{scroll-behavior:auto}.vis-track.in{animation:none}}
 
 /* =====================================================================
-   v2 refinement layer — rhythm, typography, surfaces, states
+   v2 refinement layer - rhythm, typography, surfaces, states
    (same palette & tone; overrides earlier rules by source order)
    ===================================================================== */
 html{scroll-padding-top:78px}
@@ -780,6 +780,180 @@ nav.menu a.nav-cta,.contact .btn.primary{font-weight:700;letter-spacing:.12em}
 
 /* footer copyright note */
 footer .foot-note{flex-basis:100%;margin:6px 0 0;font-family:var(--han);font-size:.72rem;letter-spacing:.04em;text-transform:none;color:var(--cream-dim);opacity:.75;line-height:1.6}
+/* ===================== v3: merged hero + results ===================== */
+.hero.v3{min-height:100svh;display:flex;align-items:center;text-align:left;justify-content:center;
+  padding:clamp(104px,13vh,132px) clamp(20px,5vw,64px) clamp(40px,6vh,64px)}
+.hero.v3 .hero-photo{opacity:.22;filter:saturate(.6)}
+.hero.v3 .hero-bg,.hero.v3 .scroll-cue{display:none}
+.hero-grid{width:100%;max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(32px,4.5vw,72px);align-items:center}
+.hero.v3 .hero-center{align-items:flex-start;text-align:left;max-width:none;margin:0;transform:none}
+.hero.v3 .eyebrow{margin-bottom:18px;font-size:.68rem}
+.hero.v3 .hero-name{font-size:clamp(1.6rem,2.3vw,2.2rem);font-weight:700;letter-spacing:.06em;margin-bottom:12px;line-height:1.3}
+.hero.v3 .hero-name span{display:block;font-family:var(--serif);font-weight:600;font-size:.62em;letter-spacing:.08em;color:var(--cream-dim);margin:4px 0 0}
+.hero.v3 .role{font-size:clamp(.9rem,1.1vw,1rem);letter-spacing:.12em;font-weight:500}
+.hero.v3 .rule{width:56px;margin:22px 0 18px;background:var(--olive-2);height:2px;opacity:.9}
+.hero.v3 .hero-line{font-size:clamp(1.15rem,1.55vw,1.45rem);line-height:1.35;letter-spacing:.05em;max-width:none;color:var(--cream-dim);font-weight:500}
+.hero.v3 .hero-line .q{color:var(--gold)}
+/* tiles inside the hero */
+.hero.v3 .bento{gap:10px}
+.hero.v3 .tile{min-height:clamp(150px,20vh,205px);padding:clamp(18px,1.8vw,26px)}
+.hero.v3 .tile.feature{min-height:clamp(170px,24vh,235px)}
+.hero.v3 .tile .big{font-size:clamp(2rem,3vw,2.9rem)}
+.hero.v3 .tile.feature .big{font-size:clamp(2.6rem,4vw,3.8rem)}
+.hero.v3 .tile .big[style]{font-size:clamp(1.8rem,2.6vw,2.5rem)!important}
+.hero.v3 .tile .cap{font-size:.84rem;margin-top:6px}
+.hero.v3 .tile{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s,filter .45s}
+.tile-arrow{position:absolute;top:clamp(16px,1.6vw,22px);right:clamp(16px,1.6vw,22px);width:14px;height:1.5px;background:currentColor;opacity:0;transform:translateX(-6px);transition:opacity .35s,transform .35s cubic-bezier(.16,1,.3,1)}
+.tile-arrow::after{content:"";position:absolute;right:0;top:50%;width:7px;height:7px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:translateY(-50%) rotate(45deg)}
+@media(hover:hover){.hero.v3 .tile:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(0,0,0,.6);filter:brightness(1.05)}
+  .hero.v3 .tile:hover .tile-arrow{opacity:.85;transform:none}}
+.hero.v3 .tile:focus-visible .tile-arrow{opacity:.85;transform:none}
+@media(hover:none){.tile-arrow{opacity:.5;transform:none}}
+@media(max-width:1100px){.hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero.v3 .hero-center{display:flex;flex-direction:column;align-items:flex-start!important;text-align:left!important;width:100%;margin:0!important}
+  .hero.v3 .tile{min-height:150px}.hero.v3 .tile.feature{min-height:170px}}
+@media(max-width:760px){
+  .hero.v3{min-height:0;padding-top:104px;padding-bottom:48px}
+  .hero.v3 .hero-center{display:flex;flex-direction:column;align-items:flex-start!important;text-align:left!important;justify-self:stretch;width:100%;margin:0!important}
+  .hero.v3 .hero-name{margin-bottom:8px}.hero.v3 .eyebrow{margin-bottom:12px}
+  .hero.v3 .rule{display:block;margin:16px 0 12px}
+  .hero.v3 .tile{min-height:128px;padding:18px}
+  .hero.v3 .tile.feature{min-height:146px}
+  .hero.v3 .tile .big{font-size:2rem}.hero.v3 .tile.feature .big{font-size:2.7rem}
+  .hero.v3 .tile .cap{font-size:.8rem}}
+
+/* ===================== v3: project showcase cards ===================== */
+#work .worklist.reveal{border:0;background:none;box-shadow:none;border-radius:0;padding:0}
+.witem.pcard{border:0;border-top:1px solid var(--line-d);padding:clamp(40px,5vw,72px) 0;margin:0;background:none!important;box-shadow:none!important;border-radius:0!important}
+.witem.pcard:first-child{border-top:0;padding-top:0}
+.witem.pcard::before{display:none}
+.pc-show{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(30px,4.5vw,72px);align-items:center}
+.witem.pcard:nth-child(even) .pc-media{order:2}
+.pc-media{display:flex;align-items:center;justify-content:center;aspect-ratio:5/4;padding:clamp(18px,2.2vw,32px);background:var(--paper-2);border:1px solid var(--line-d);border-radius:var(--r-lg);overflow:hidden;cursor:zoom-in;
+  box-shadow:0 30px 60px -44px rgba(37,32,25,.55);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s}
+.pc-media img{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:4px;box-shadow:0 14px 30px -16px rgba(37,32,25,.45);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+@media(hover:hover){.pc-media:hover{transform:translateY(-4px);box-shadow:0 40px 70px -44px rgba(37,32,25,.6)}.pc-media:hover img{transform:scale(1.02)}}
+.pc-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.pcard .wnum{font-size:1.5rem;padding:0;transform:none!important}
+.pcard .wcat{display:inline-block!important}
+.pcard h3.wname{font-size:clamp(1.35rem,2vw,1.75rem);line-height:1.35;margin:0 0 6px;color:var(--ink)}
+.pc-role{margin:0 0 14px;font-family:var(--sans);font-size:.86rem;letter-spacing:.04em;color:var(--olive-deep)}
+.pcard .wdesc{display:block!important;font-size:.98rem;line-height:1.85;margin:0 0 20px;color:var(--ink-soft);max-width:34em}
+.pcard .pc-body .p-metrics{margin-top:0}
+.pcard .pc-body .p-metrics.m3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pcard .pc-body .p-metrics:not(.m3){grid-template-columns:repeat(4,minmax(0,1fr))}
+.pcard .pc-body .pm{padding:14px 12px}.pcard .pc-body .pm .v{font-size:1.55rem}
+.pcard .wrow.pc-more{display:inline-flex!important;width:auto;grid-template-columns:none;gap:14px;align-items:center;margin-top:24px;padding:12px 14px 12px 22px!important;
+  border:1px solid var(--olive);border-radius:999px;background:transparent;font-family:var(--han);font-size:.88rem;letter-spacing:.1em;color:var(--olive-deep);font-weight:600}
+.pcard .wrow.pc-more:hover{background:var(--olive);color:var(--cream)}
+.pcard .wrow.pc-more:hover .wchev{border-color:rgba(239,233,219,.5)}
+.pcard .wrow.pc-more:hover .wchev::before,.pcard .wrow.pc-more:hover .wchev::after{background:var(--cream)}
+.witem.pcard.open .wrow.pc-more{background:var(--olive);color:var(--cream)}
+.pcard .wpanel{margin-top:0;transition:grid-template-rows .55s cubic-bezier(.16,1,.3,1),margin-top .55s cubic-bezier(.16,1,.3,1)}
+.witem.pcard.open .wpanel{margin-top:clamp(26px,3vw,40px)}
+.pcard .wpanel-in{background:var(--paper-2);border:1px solid var(--line-d);border-radius:var(--r-lg)}
+.witem.pcard:not(.open) .wpanel-in{border-color:transparent}
+.pcard .wgrid{padding:clamp(22px,2.6vw,36px)}
+.pcard .wgrid.no-media{grid-template-columns:1fr}
+.pcard .wgrid.no-media .wbreak{margin-top:0}
+@media(max-width:860px){
+  .pc-show{grid-template-columns:1fr;gap:22px}
+  .witem.pcard:nth-child(even) .pc-media{order:0}
+  .pc-media{aspect-ratio:4/3}
+  .pcard .pc-body .p-metrics:not(.m3),.pcard .pc-body .p-metrics.m3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pcard .wrow.pc-more{width:100%;justify-content:space-between}
+}
+
+/* ---- v3 round 2 ---- */
+/* refined category label next to the number */
+.pcard .pc-head{gap:16px}
+.pcard .wcat{border:0!important;border-radius:4px;background:rgba(111,109,58,.12)!important;color:var(--olive-deep)!important;
+  font-family:var(--han);font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:none;padding:6px 12px 6px 11px;line-height:1.2}
+/* CTA on light ground: filled olive (matches 聯絡我), outline when open */
+.pcard .wrow.pc-more{background:var(--olive)!important;border-color:var(--olive)!important;color:var(--cream)!important;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.03) 50%,rgba(0,0,0,.05))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 22px -14px rgba(37,32,25,.55)}
+.pcard .wrow.pc-more .wchev{border-color:rgba(239,233,219,.45)}
+.pcard .wrow.pc-more .wchev::before,.pcard .wrow.pc-more .wchev::after{background:var(--cream)}
+.pcard .wrow.pc-more:hover{background-color:var(--olive-deep)!important;border-color:var(--olive-deep)!important}
+.witem.pcard.open .wrow.pc-more{background:transparent!important;background-image:none!important;color:var(--olive-deep)!important;box-shadow:none}
+.witem.pcard.open .wrow.pc-more .wchev{border-color:var(--line-d)}
+.witem.pcard.open .wrow.pc-more .wchev::before,.witem.pcard.open .wrow.pc-more .wchev::after{background:var(--olive-deep)}
+/* details: no outer box line - only the thick olive rules remain */
+.pcard .wpanel-in{border:0!important}
+.pcard .wdetail{border-left:0!important}
+.pcard .wgrid.no-media .wdetail{padding-left:0!important;margin-left:0!important}
+
+/* ---- taste pass ---- */
+/* hero: single-line motto, no decorative pulse */
+.hero.v3 .hero-line{white-space:nowrap;font-size:clamp(.98rem,1.28vw,1.22rem);letter-spacing:.04em}
+.hero.v3 .hero-line br{display:none}
+.hero.v3 .hero-pulse{display:none}
+.hero.v3 .hero-name{margin-bottom:14px}
+/* one radius system: containers 14 / inner cards 10 / tags 4 / buttons pill */
+.pm,.ad-frame{border-radius:var(--r-md)!important}
+.pc-media,.pcard .wpanel-in{border-radius:var(--r-lg)!important}
+.vtag{border-radius:4px!important}
+/* project rhythm */
+#work .worklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(28px,4vw,56px)}
+.witem.pcard{grid-column:1 / -1}
+.witem.pcard.pc-pair{grid-column:auto}
+.pc-feature .pc-show{grid-template-columns:1fr;gap:clamp(26px,3vw,40px)}
+.pc-feature .pc-media{aspect-ratio:21/9}
+.pc-feature .pc-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,5vw,72px);align-items:start}
+.pc-feature .pc-body>*{grid-column:1}
+.pc-feature .pc-body .p-metrics{grid-column:2;grid-row:1 / 4;align-self:start}
+.pc-feature .pc-body .pc-more{grid-column:2;grid-row:4;justify-self:start;align-self:start;margin-top:0}
+.pc-pair .pc-show{grid-template-columns:1fr;gap:24px;align-items:start}
+.pc-pair .pc-media{aspect-ratio:4/3}
+.pc-pair .pc-body .p-metrics,.pc-pair .pc-body .p-metrics:not(.m3){grid-template-columns:repeat(2,minmax(0,1fr))}
+.pc-pair .wgrid{grid-template-columns:1fr!important}
+.witem.pcard.pc-pair:nth-last-child(2){padding-right:0}
+@media(max-width:860px){
+  #work .worklist{grid-template-columns:1fr}
+  .witem.pcard.pc-pair{grid-column:1 / -1}
+  .witem.pcard.pc-rev .pc-media{order:0}
+  .pc-feature .pc-media{aspect-ratio:4/3}
+  .pc-feature .pc-body{display:block}
+  .pc-feature .pc-body .pc-more{margin-top:24px}
+}
+
+/* projects: consistent zigzag (odd image left, even image right) */
+.witem.pcard{scroll-margin-top:96px}
+/* slim index strip */
+.pidx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);margin:-12px 0 clamp(48px,5.5vw,80px);padding-bottom:clamp(30px,3.2vw,44px);border-bottom:1px solid var(--line-d)}
+.pidx-it{position:relative;display:block;color:var(--ink)}
+.pidx-th{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--r-md);overflow:hidden;background:var(--paper-2);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 16px 28px -22px rgba(37,32,25,.55);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.pidx-th::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--olive);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.pidx-th img{width:100%;height:100%;object-fit:cover;filter:saturate(.92);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s}
+.pidx-tx{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:baseline;margin-top:14px}
+.pidx-tx b{font-family:var(--fig);font-weight:600;font-size:1.3rem;line-height:1;color:var(--olive);font-variant-numeric:lining-nums tabular-nums;transition:color .35s}
+.pidx-tx span{font-family:var(--han);font-size:.84rem;line-height:1.45;letter-spacing:.05em;color:var(--ink-soft);transition:color .35s}
+@media(hover:hover){.pidx-it:hover .pidx-th{transform:translateY(-4px);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 24px 36px -24px rgba(37,32,25,.6)}
+  .pidx-it:hover .pidx-th::after{transform:scaleX(1)}.pidx-it:hover img{transform:scale(1.05);filter:none}
+  .pidx-it:hover .pidx-tx span{color:var(--ink)}}
+.pidx-it.on .pidx-th::after{transform:scaleX(1)}
+.pidx-it.on .pidx-tx b{color:var(--olive-deep)}.pidx-it.on .pidx-tx span{color:var(--ink);font-weight:500}
+.pidx-it:focus-visible{outline:2px solid var(--olive-2);outline-offset:4px;border-radius:var(--r-md)}
+@media(max-width:860px){.pidx{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-top:4px}
+  .pidx::-webkit-scrollbar{display:none}.pidx-it{flex:0 0 40%;scroll-snap-align:start}.pidx-tx b{font-size:1.1rem}}
+/* about vs projects: one tone apart so the two light sections separate */
+#about{background:var(--paper-2)}
+
+/* index strip = small version of the Visual Works card (same mat frame + number/title type) */
+.pidx-th{display:flex;align-items:center;justify-content:center;padding:clamp(10px,1vw,14px);background:var(--paper-2);border:1px solid var(--line-d);
+  border-radius:var(--r-md);box-shadow:0 18px 34px -28px rgba(37,32,25,.55)}
+.pidx-th img{width:auto!important;height:auto!important;max-width:100%;max-height:100%;object-fit:contain;filter:none;border-radius:3px;
+  box-shadow:0 8px 18px -12px rgba(37,32,25,.45)}
+.pidx-th::after{left:-1px;right:-1px;top:-1px}
+@media(hover:hover){.pidx-it:hover img{transform:scale(1.025)}}
+.pidx-tx{display:block;margin-top:12px}
+.pidx-tx b{display:inline;font-size:.98rem;margin-right:.55em;color:var(--olive)}
+.pidx-tx span{display:inline;font-family:var(--ming);font-weight:700;font-size:.9rem;letter-spacing:.02em;color:var(--ink);line-height:1.5}
+.pidx-it.on .pidx-tx span{font-weight:700;color:var(--olive-deep)}
+/* contact info: align the plain-text value with the link values */
+.cinfo .item a,.cinfo .item span{display:inline-block;padding:8px 0;line-height:1.5;vertical-align:top}
 /* anchor offset: land the section heading just under the fixed nav
    (was: html scroll-padding 78px + section scroll-margin 78px = double offset, plus the section's top padding) */
 html{scroll-padding-top:0}
@@ -802,7 +976,7 @@ h2 .en{font-size:.48em}
 <header class="nav" id="nav">
   <div class="brand">Ella Li</div>
   <nav class="menu">
-    <a href="#results">成效</a><a href="#about">關於我</a><a href="#work">專案</a><a href="#visual">視覺</a><a href="#exp">職涯</a><a href="#skills">專長</a>
+    <a href="#about">關於我</a><a href="#work">專案</a><a href="#visual">視覺</a><a href="#exp">職涯</a><a href="#skills">專長</a>
     <a class="nav-cta" href="#contact">聯絡我</a>
   </nav>
   <button class="navbtn" id="navbtn" aria-label="開啟選單" aria-expanded="false">選單</button>
@@ -810,7 +984,7 @@ h2 .en{font-size:.48em}
 <main id="main">
 
 <!-- HERO -->
-<section class="hero" id="top">
+<section class="hero v3" id="top">
   <div class="hero-photo" aria-hidden="true"><img fetchpriority="high" decoding="async" src="hero.webp" alt=""></div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-pulse" aria-hidden="true"></div>
@@ -844,27 +1018,20 @@ h2 .en{font-size:.48em}
       </circle>
     </svg>
   </div>
-  <div class="hero-center">
-    <div class="eyebrow">Portfolio · 2026</div>
-    <div class="hero-name">李佳樺 <span>Ella Li</span></div>
-    <h1 class="hero-line">The detail<br>is the <span class="q">“</span>story.<span class="q">”</span></h1>
-    <div class="rule"></div>
-    <p class="role">數位成效投放 <span class="x">×</span> 品牌行銷</p>
-    <div class="scroll-cue">scroll</div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="dark fit" id="results">
-  <div class="wrap">
-    <div class="sec-head reveal"><h2><span class="en">Selected Results</span>代表成效</h2></div>
-    <div class="bento reveal">
-      <a class="tile flip t-olive feature span6" href="#w05" data-proj="w05"><div class="flip-in"><div class="face front"><div class="tag">Blended ROAS</div><div><div class="big"><span class="num" data-to="7.4" data-dec="1">7.4</span><em>×</em></div><div class="cap">線上課程全渠道投資報酬率</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
-      <a class="tile flip t-esp span3" href="#w05" data-proj="w05"><div class="flip-in"><div class="face front"><div class="tag">Meta ROAS</div><div><div class="big"><span class="num" data-to="10.3" data-dec="1">10.3</span><em>×</em></div><div class="cap">單平台最佳投放</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
-      <a class="tile flip t-olive span3" href="#w07" data-proj="w07"><div class="flip-in"><div class="face front"><div class="tag">Lunar New Year</div><div><div class="big" style="font-size:clamp(2rem,4vw,3rem)">破千萬</div><div class="cap">春節檔期銷售額</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
-      <a class="tile flip t-cream span4" href="#w05" data-proj="w05"><div class="flip-in"><div class="face front"><div class="tag">主力 CPA</div><div><div class="big"><span class="sym">$</span><span class="num" data-to="374">374</span></div><div class="cap">每筆轉換成本</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
-      <a class="tile flip t-esp span4" href="#w06" data-proj="w06"><div class="flip-in"><div class="face front"><div class="tag">會員成長</div><div><div class="big"><span class="num" data-to="3740">3,740</span></div><div class="cap">新增官網會員</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
-      <a class="tile flip t-cream span4" href="#w06" data-proj="w06"><div class="flip-in"><div class="face front"><div class="tag">最佳素材 CVR</div><div><div class="big"><span class="num" data-to="13.5" data-dec="1">13.5</span><em>%</em></div><div class="cap">單一素材轉換率</div></div></div><div class="face back"><div class="bk-go">看專案<i></i></div></div></div></a>
+  <div class="hero-grid">
+    <div class="hero-center">
+      <div class="hero-name">李佳樺 <span>Ella Li</span></div>
+      <p class="role">數位成效投放 <span class="x">×</span> 品牌行銷</p>
+      <div class="rule"></div>
+      <h1 class="hero-line">The detail is the <span class="q">“</span>story.<span class="q">”</span></h1>
+    </div>
+    <div class="bento" id="results" role="list" aria-label="代表成效">
+      <a class="tile t-olive feature span6" href="#w05" data-proj="w05"><div class="tag">Blended ROAS</div><div><div class="big"><span class="num" data-to="7.4" data-dec="1">7.4</span><em>×</em></div><div class="cap">全渠道綜合報酬</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
+      <a class="tile t-esp span3" href="#w05" data-proj="w05"><div class="tag">Meta ROAS</div><div><div class="big"><span class="num" data-to="10.3" data-dec="1">10.3</span><em>×</em></div><div class="cap">單平台最佳投放</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
+      <a class="tile t-olive span3" href="#w07" data-proj="w07"><div class="tag">Lunar New Year</div><div><div class="big" style="font-size:clamp(2rem,4vw,3rem)">破千萬</div><div class="cap">單檔期銷售額</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
+      <a class="tile t-cream span4" href="#w05" data-proj="w05"><div class="tag">主力 CPA</div><div><div class="big"><span class="sym">$</span><span class="num" data-to="374">374</span></div><div class="cap">高單價課程轉換成本</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
+      <a class="tile t-esp span4" href="#w06" data-proj="w06"><div class="tag">會員成長</div><div><div class="big"><span class="num" data-to="3740">3,740</span></div><div class="cap">新增官網會員</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
+      <a class="tile t-cream span4" href="#w06" data-proj="w06"><div class="tag">最佳素材 CVR</div><div><div class="big"><span class="num" data-to="13.5" data-dec="1">13.5</span><em>%</em></div><div class="cap">單一素材轉換率</div></div><span class="tile-arrow" aria-hidden="true"></span></a>
     </div>
   </div>
 </section>
@@ -904,29 +1071,30 @@ h2 .en{font-size:.48em}
   <div class="wrap">
     <div class="sec-head reveal"><h2><span class="en">Selected Work</span>專案作品</h2></div>
 
+    <nav class="pidx" aria-label="專案索引"><a class="pidx-it" href="#p01" data-p="p01"><span class="pidx-th"><img loading="lazy" decoding="async" src="project-01-kv-800.webp" alt="" style="object-position:72% 28%"></span><span class="pidx-tx"><b>01</b><span>線上課程廣告投放</span></span></a><a class="pidx-it" href="#p02" data-p="p02"><span class="pidx-th"><img loading="lazy" decoding="async" src="project-02-kv-800.webp" alt="" style="object-position:50% 22%"></span><span class="pidx-tx"><b>02</b><span>LTrust 官網會員拉新</span></span></a><a class="pidx-it" href="#p03" data-p="p03"><span class="pidx-th"><img loading="lazy" decoding="async" src="project-03-kv.webp" alt="" style="object-position:50% 50%"></span><span class="pidx-tx"><b>03</b><span>春節禮盒整合行銷</span></span></a><a class="pidx-it" href="#p04" data-p="p04"><span class="pidx-th"><img loading="lazy" decoding="async" src="project-04-welcome.webp" alt="" style="object-position:50% 38%"></span><span class="pidx-tx"><b>04</b><span>LINE OA 重啟企劃</span></span></a><a class="pidx-it" href="#p05" data-p="p05"><span class="pidx-th"><img loading="lazy" decoding="async" src="project-05-page-01.webp" alt="" style="object-position:50% 0%"></span><span class="pidx-tx"><b>05</b><span>《島嶼四景禮盒》上市企劃</span></span></a></nav>
     <div class="worklist reveal">
 
-      <article class="witem">
-        <button class="wrow" aria-expanded="false" aria-controls="w05">
-          <span class="wnum">01</span>
-          <span class="wname">線上課程廣告投放</span>
-          <span class="wdesc">高單價課程獨立規劃投放與執行 Meta ROAS 10.3×。</span>
-          <span class="wcat">數位廣告投放</span>
-          <span class="wchev" aria-hidden="true"></span>
-        </button>
-        <div class="wpanel" id="w05"><div class="wpanel-in"><div class="wgrid">
-          <div class="wmedia">
-            <figure class="p-figure" style="aspect-ratio:2355/1324"><div class="glow"></div><img loading="lazy" src="project-01-kv.webp" srcset="project-01-kv-800.webp 800w, project-01-kv.webp 1400w" sizes="(max-width:860px) 92vw, 560px" alt="45+ 財富自由行動攻略 線上課程廣告主視覺"></figure>
-            <div class="p-cap">廣告主視覺 · 醍醐WAY 財富自由課程</div>
-          </div>
-          <div class="wdetail">
-            <div class="p-role">醍醐WAY × PressPlay Academy</div>
+      <article class="witem pcard" id="p01">
+        <div class="pc-show">
+          <a class="pc-media" href="#w05" data-more aria-label="看完整策略：線上課程廣告投放"><img loading="lazy" decoding="async" src="project-01-kv.webp" srcset="project-01-kv-800.webp 800w, project-01-kv.webp 1400w" sizes="(max-width:860px) 92vw, 600px" width="1400" height="787" alt="45+ 財富自由行動攻略 線上課程廣告主視覺"></a>
+          <div class="pc-body">
+            <div class="pc-head"><span class="wnum">01</span><span class="wcat">數位廣告投放</span></div>
+            <h3 class="wname">線上課程廣告投放</h3>
+            <p class="pc-role">醍醐WAY × PressPlay Academy</p>
+            <p class="wdesc">高單價課程獨立規劃投放與執行 Meta ROAS 10.3×。</p>
             <div class="p-metrics">
               <div class="pm"><div class="v"><span class="num" data-to="10.3" data-dec="1">10.3</span><em>×</em></div><div class="l">Meta ROAS</div></div>
               <div class="pm"><div class="v"><span class="num" data-to="3.70" data-dec="2">3.70</span><em>%</em></div><div class="l">轉換率 CVR</div></div>
               <div class="pm"><div class="v"><span class="num" data-to="433">433</span></div><div class="l">網站購買</div></div>
               <div class="pm"><div class="v"><span class="sym">$</span><span class="num" data-to="374">374</span></div><div class="l">轉換成本 CPA</div></div>
             </div>
+            <button class="wrow pc-more" type="button" aria-expanded="false" aria-controls="w05"><span class="pc-more-t">看完整策略</span><span class="wchev" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <div class="wpanel" id="w05"><div class="wpanel-in"><div class="wgrid no-media">
+          <div class="wdetail">
+            
+            
             <div class="wbreak"><h5>Strategy Breakdown</h5><ul>
               <li><b>暖受眾優先</b>先以講師既有粉絲做出成績、累積口碑，再逐步拓圈放量，壓低高單價商品的信任成本。</li>
               <li><b>三波段配比</b>早鳥／試看／倒數 分段配置預算，對齊 45+ 受眾較長的決策週期。</li>
@@ -944,26 +1112,26 @@ h2 .en{font-size:.48em}
         </div></div></div>
       </article>
 
-      <article class="witem">
-        <button class="wrow" aria-expanded="false" aria-controls="w06">
-          <span class="wnum">02</span>
-          <span class="wname">LTrust 官網會員拉新專案</span>
-          <span class="wdesc">動森登島遊戲化註冊 + 雙層誘因，雙渠道拉新 3,740 會員。</span>
-          <span class="wcat">會員拉新</span>
-          <span class="wchev" aria-hidden="true"></span>
-        </button>
-        <div class="wpanel" id="w06"><div class="wpanel-in"><div class="wgrid">
-          <div class="wmedia">
-            <figure class="p-figure" style="aspect-ratio:1080/1350"><div class="glow"></div><img loading="lazy" src="project-02-kv.webp" srcset="project-02-kv-800.webp 800w, project-02-kv.webp 1080w" sizes="(max-width:860px) 92vw, 560px" alt="LTrust 動森登島遊戲化註冊活動主視覺"></figure>
-            <div class="p-cap">活動主視覺 · LTrust 登島計畫</div>
-          </div>
-          <div class="wdetail">
-            <div class="p-role">專案負責人／行銷企劃</div>
+      <article class="witem pcard" id="p02">
+        <div class="pc-show">
+          <a class="pc-media" href="#w06" data-more aria-label="看完整策略：LTrust 線上教育平台 官網會員拉新"><img loading="lazy" decoding="async" src="project-02-kv.webp" srcset="project-02-kv-800.webp 800w, project-02-kv.webp 1080w" sizes="(max-width:860px) 92vw, 600px" width="1080" height="1350" alt="LTrust 動森登島遊戲化註冊活動主視覺"></a>
+          <div class="pc-body">
+            <div class="pc-head"><span class="wnum">02</span><span class="wcat">會員拉新</span></div>
+            <h3 class="wname">LTrust 線上教育平台 官網會員拉新</h3>
+            <p class="pc-role">專案負責人／行銷企劃</p>
+            <p class="wdesc">動森登島遊戲化註冊 + 雙層誘因，雙渠道拉新 3,740 會員。</p>
             <div class="p-metrics m3">
               <div class="pm"><div class="v"><span class="num" data-to="3740">3,740</span></div><div class="l">新增會員</div></div>
               <div class="pm"><div class="v"><span class="sym">$</span><span class="num" data-to="87">87</span></div><div class="l">Meta CPA</div></div>
               <div class="pm"><div class="v"><span class="num" data-to="13.5" data-dec="1">13.5</span><em>%</em></div><div class="l">最佳 CVR</div></div>
             </div>
+            <button class="wrow pc-more" type="button" aria-expanded="false" aria-controls="w06"><span class="pc-more-t">看完整策略</span><span class="wchev" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <div class="wpanel" id="w06"><div class="wpanel-in"><div class="wgrid no-media">
+          <div class="wdetail">
+            
+            
             <div class="wbreak"><h5>Strategy Breakdown</h5><ul>
               <li><b>遊戲化降摩擦</b>以「動森登島」情境包裝註冊流程，把生硬表單變成登島任務，降低學生族群門檻。</li>
               <li><b>雙層誘因</b>推薦機制＋抽獎誘因並行，同時拉高單一會員的推廣動力與整體參與率。</li>
@@ -977,27 +1145,27 @@ h2 .en{font-size:.48em}
         </div></div></div>
       </article>
 
-      <article class="witem">
-        <button class="wrow" aria-expanded="false" aria-controls="w07">
-          <span class="wnum">03</span>
-          <span class="wname">小茶栽堂 2025 春節禮盒整合行銷</span>
-          <span class="wdesc">主導檔期概念發想與定調，策動線上下整合執行，成功帶動千萬級業績轉換。</span>
-          <span class="wcat">品牌整合行銷</span>
-          <span class="wchev" aria-hidden="true"></span>
-        </button>
-        <div class="wpanel" id="w07"><div class="wpanel-in"><div class="wgrid">
-          <div class="wmedia">
-            <figure class="p-figure" style="aspect-ratio:1/1"><div class="glow"></div><img loading="lazy" src="project-03-kv.webp" alt="小茶栽堂 2025 春節禮盒檔期主視覺"></figure>
-            <div class="p-cap">檔期主視覺 · 小茶栽堂 2025 春節禮盒「金韻共酌」</div>
-          </div>
-          <div class="wdetail">
-            <div class="p-role">品牌行銷企劃 · 主題／素材文案／與廣代協作投放</div>
+      <article class="witem pcard" id="p03">
+        <div class="pc-show">
+          <a class="pc-media" href="#w07" data-more aria-label="看完整策略：小茶栽堂 2025 春節禮盒整合行銷"><img loading="lazy" decoding="async" src="project-03-kv.webp" width="672" height="671" alt="小茶栽堂 2025 春節禮盒檔期主視覺"></a>
+          <div class="pc-body">
+            <div class="pc-head"><span class="wnum">03</span><span class="wcat">品牌整合行銷</span></div>
+            <h3 class="wname">小茶栽堂 2025 春節禮盒整合行銷</h3>
+            <p class="pc-role">品牌行銷企劃｜主題／素材文案／與廣代協作投放</p>
+            <p class="wdesc">主導檔期概念發想與定調，策動線上下整合執行，成功帶動千萬級業績轉換。</p>
             <div class="p-metrics">
               <div class="pm"><div class="v">破千萬</div><div class="l">檔期營收</div></div>
               <div class="pm"><div class="v">800萬+</div><div class="l">廣告曝光</div></div>
               <div class="pm"><div class="v"><span class="num" data-to="8.36" data-dec="2">8.36</span><em>%</em></div><div class="l">Google CTR</div></div>
               <div class="pm"><div class="v"><span class="num" data-to="13.99" data-dec="2">13.99</span><em>%</em></div><div class="l">Google CVR</div></div>
             </div>
+            <button class="wrow pc-more" type="button" aria-expanded="false" aria-controls="w07"><span class="pc-more-t">看完整策略</span><span class="wchev" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <div class="wpanel" id="w07"><div class="wpanel-in"><div class="wgrid no-media">
+          <div class="wdetail">
+            
+            
             <div class="wbreak"><h5>Strategy Breakdown</h5><ul>
               <li><b>品牌敘事</b>發想「金韻共酌」主題，以茶代酒乾杯，把年節送禮的情感連結具象化，讓品牌更有敘事感。</li>
               <li><b>全素材產出</b>產出行銷文案並與設計協作，完成社群、EDM 與 Landing Page 素材。</li>
@@ -1018,14 +1186,23 @@ h2 .en{font-size:.48em}
         </div></div></div>
       </article>
 
-      <article class="witem">
-        <button class="wrow" aria-expanded="false" aria-controls="w08">
-          <span class="wnum">04</span>
-          <span class="wname">小茶栽堂官方 LINE OA 重啟企劃</span>
-          <span class="wdesc">重啟帳號、選單 UX、優惠券閉環，淨增 872 位好友。</span>
-          <span class="wcat">社群經營</span>
-          <span class="wchev" aria-hidden="true"></span>
-        </button>
+      <article class="witem pcard" id="p04">
+        <div class="pc-show">
+          <a class="pc-media" href="#w08" data-more aria-label="看完整策略：小茶栽堂官方 LINE OA 重啟企劃"><img loading="lazy" decoding="async" src="project-04-welcome.webp" width="900" height="900" alt="小茶栽堂官方 LINE OA 歡迎卡畫面"></a>
+          <div class="pc-body">
+            <div class="pc-head"><span class="wnum">04</span><span class="wcat">社群經營</span></div>
+            <h3 class="wname">小茶栽堂官方 LINE OA 重啟企劃</h3>
+            <p class="pc-role">品牌行銷／社群經營／粉絲增長</p>
+            <p class="wdesc">重啟帳號、選單 UX、優惠券閉環，淨增 872 位好友。</p>
+            <div class="p-metrics">
+              <div class="pm"><div class="v"><span class="sym">+</span><span class="num" data-to="872">872</span></div><div class="l">淨增好友</div></div>
+              <div class="pm"><div class="v"><span class="num" data-to="78">78</span><em>%</em></div><div class="l">領券率</div></div>
+              <div class="pm"><div class="v"><span class="num" data-to="67">67</span><em>%</em></div><div class="l">領券使用率</div></div>
+              <div class="pm"><div class="v"><span class="sym">$</span><span class="num" data-to="17">17</span></div><div class="l">獲客成本</div></div>
+            </div>
+            <button class="wrow pc-more" type="button" aria-expanded="false" aria-controls="w08"><span class="pc-more-t">看完整策略</span><span class="wchev" aria-hidden="true"></span></button>
+          </div>
+        </div>
         <div class="wpanel" id="w08"><div class="wpanel-in"><div class="wgrid">
           <div class="wmedia">
             <div class="wscroll">
@@ -1035,13 +1212,8 @@ h2 .en{font-size:.48em}
             <div class="p-cap">LINE OA 歡迎卡與圖文選單（可上下滾動瀏覽）</div>
           </div>
           <div class="wdetail">
-            <div class="p-role">品牌行銷 · 社群經營 · 粉絲增長</div>
-            <div class="p-metrics">
-              <div class="pm"><div class="v"><span class="sym">+</span><span class="num" data-to="872">872</span></div><div class="l">淨增好友</div></div>
-              <div class="pm"><div class="v"><span class="num" data-to="78">78</span><em>%</em></div><div class="l">領券率</div></div>
-              <div class="pm"><div class="v"><span class="num" data-to="67">67</span><em>%</em></div><div class="l">領券使用率</div></div>
-              <div class="pm"><div class="v"><span class="sym">$</span><span class="num" data-to="17">17</span></div><div class="l">獲客成本</div></div>
-            </div>
+            
+            
             <div class="wbreak"><h5>Strategy Breakdown</h5><ul>
               <li><b>帳號重啟</b>品牌社群是與消費者的重要互動連結，加入後重新規劃 LINE OA 架構與行銷活動推廣，讓沉睡的官方帳號重新運轉。</li>
               <li><b>選單 UX</b>圖文選單重新設計並優化動線，把常用功能放在一眼可及處。</li>
@@ -1051,21 +1223,14 @@ h2 .en{font-size:.48em}
         </div></div></div>
       </article>
 
-      <article class="witem">
-        <button class="wrow" aria-expanded="false" aria-controls="w09">
-          <span class="wnum">05</span>
-          <span class="wname">小茶栽堂「四景之美」茶葉禮盒 上市企劃</span>
-          <span class="wdesc">台灣地景 × 茶風味的產品敘事，首月成門市主打，社群互動率高於同類 +35%。</span>
-          <span class="wcat">產品行銷企劃</span>
-          <span class="wchev" aria-hidden="true"></span>
-        </button>
-        <div class="wpanel" id="w09"><div class="wpanel-in"><div class="wgrid">
-          <div class="wmedia">
-            <div class="wscroll"><img src="project-05-page-01.webp" alt="四景之美 產品頁 第1頁" loading="lazy"><img src="project-05-page-02.webp" alt="四景之美 產品頁 第2頁" loading="lazy"><img src="project-05-page-03.webp" alt="四景之美 產品頁 第3頁" loading="lazy"><img src="project-05-page-04.webp" alt="四景之美 產品頁 第4頁" loading="lazy"><img src="project-05-page-05.webp" alt="四景之美 產品頁 第5頁" loading="lazy"><img src="project-05-page-06.webp" alt="四景之美 產品頁 第6頁" loading="lazy"><img src="project-05-page-07.webp" alt="四景之美 產品頁 第7頁" loading="lazy"><img src="project-05-page-08.webp" alt="四景之美 產品頁 第8頁" loading="lazy"><img src="project-05-page-09.webp" alt="四景之美 產品頁 第9頁" loading="lazy"><img src="project-05-page-10.webp" alt="四景之美 產品頁 第10頁" loading="lazy"><img src="project-05-page-11.webp" alt="四景之美 產品頁 第11頁" loading="lazy"><img src="project-05-page-12.webp" alt="四景之美 產品頁 第12頁" loading="lazy"><img src="project-05-page-13.webp" alt="四景之美 產品頁 第13頁" loading="lazy"></div>
-            <div class="p-cap">完整產品頁 · 小茶栽堂「四景之美」茶葉禮盒（可上下滾動瀏覽）</div>
-          </div>
-          <div class="wdetail">
-            <div class="p-role">行銷企劃 · 全文案撰寫 · 主導視覺方向</div>
+      <article class="witem pcard" id="p05">
+        <div class="pc-show">
+          <a class="pc-media" href="#w09" data-more aria-label="看完整策略：小茶栽堂《島嶼四景》茶葉禮盒 上市企劃"><img loading="lazy" decoding="async" src="project-05-page-01.webp" width="820" height="1159" alt="小茶栽堂《島嶼四景》茶葉禮盒 產品頁主視覺"></a>
+          <div class="pc-body">
+            <div class="pc-head"><span class="wnum">05</span><span class="wcat">產品行銷企劃</span></div>
+            <h3 class="wname">小茶栽堂《島嶼四景》茶葉禮盒 上市企劃</h3>
+            <p class="pc-role">行銷企劃／全文案撰寫／主導視覺方向</p>
+            <p class="wdesc">台灣地景 × 茶風味的產品敘事，首月成門市主打，社群互動率高於同類 +35%。</p>
             <div class="p-metrics m3">
               <div class="pm"><div class="v"><span class="sym">+</span><span class="num" data-to="35">35</span><em>%</em></div><div class="l">社群互動率 vs 同類貼文</div></div>
               <div class="pm"><div class="v">OMO 整合</div><div class="l">門市主打陳列</div></div>
@@ -1073,6 +1238,17 @@ h2 .en{font-size:.48em}
   <div class="v" style="font-size: 1.8rem; font-family: var(--sans); font-weight: 600;">0➔1</div>
   <div class="l">主導產品敘事與視覺</div>
 </div>            </div>
+            <button class="wrow pc-more" type="button" aria-expanded="false" aria-controls="w09"><span class="pc-more-t">看完整策略</span><span class="wchev" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <div class="wpanel" id="w09"><div class="wpanel-in"><div class="wgrid">
+          <div class="wmedia">
+            <div class="wscroll"><img src="project-05-page-01.webp" alt="小茶栽堂《島嶼四景》產品頁 第1頁" loading="lazy"><img src="project-05-page-02.webp" alt="小茶栽堂《島嶼四景》產品頁 第2頁" loading="lazy"><img src="project-05-page-03.webp" alt="小茶栽堂《島嶼四景》產品頁 第3頁" loading="lazy"><img src="project-05-page-04.webp" alt="小茶栽堂《島嶼四景》產品頁 第4頁" loading="lazy"><img src="project-05-page-05.webp" alt="小茶栽堂《島嶼四景》產品頁 第5頁" loading="lazy"><img src="project-05-page-06.webp" alt="小茶栽堂《島嶼四景》產品頁 第6頁" loading="lazy"><img src="project-05-page-07.webp" alt="小茶栽堂《島嶼四景》產品頁 第7頁" loading="lazy"><img src="project-05-page-08.webp" alt="小茶栽堂《島嶼四景》產品頁 第8頁" loading="lazy"><img src="project-05-page-09.webp" alt="小茶栽堂《島嶼四景》產品頁 第9頁" loading="lazy"><img src="project-05-page-10.webp" alt="小茶栽堂《島嶼四景》產品頁 第10頁" loading="lazy"><img src="project-05-page-11.webp" alt="小茶栽堂《島嶼四景》產品頁 第11頁" loading="lazy"><img src="project-05-page-12.webp" alt="小茶栽堂《島嶼四景》產品頁 第12頁" loading="lazy"><img src="project-05-page-13.webp" alt="小茶栽堂《島嶼四景》產品頁 第13頁" loading="lazy"></div>
+            <div class="p-cap">完整產品頁：小茶栽堂《島嶼四景》茶葉禮盒（可上下滾動瀏覽）</div>
+          </div>
+          <div class="wdetail">
+            
+            
             <div class="wbreak"><h5>Strategy Breakdown</h5><ul>
               <li><b>續作承接</b>延續「四極之光」的風格，把「台灣地景 × 茶風味」的抽象概念，說成讓人想收藏、想送禮的有溫度故事。</li>
               <li><b>概念轉譯</b>以四大地標搭島嶼必遊之美為主題，把「旅行必訪的風景」轉譯成「茶桌上必藏的風味」。</li>
@@ -1080,6 +1256,12 @@ h2 .en{font-size:.48em}
 <li><b>跨界 IP 授權</b>與台北 101 進行圖像授權交涉，順利取得地標 IP 使用權，大幅提升禮盒的指標性與收藏價值。</li>
             </ul></div>
           </div>
+            <div class="wdata wdata-full wads">
+              <h5>In-Market<span>上線紀錄</span></h5>
+              <div class="ad-row">
+                <figure class="ad-shot"><a class="ad-frame" href="ads-p05-social.webp" aria-label="放大檢視：社群貼文"><img loading="lazy" decoding="async" src="ads-p05-social.webp" width="978" height="1662" alt="小茶栽堂《島嶼四景》茶葉禮盒 Facebook 上市貼文"></a><figcaption>社群貼文</figcaption></figure>
+              </div>
+            </div>
         </div></div></div>
       </article>
 
@@ -1196,7 +1378,7 @@ h2 .en{font-size:.48em}
     <div class="timeline reveal">
       <div class="tl-line"></div>
       <div class="job"><div class="when">2025.09 ～ 2026.08</div><div class="node"><span class="dot"></span></div><div class="jc"><div class="co-sm">龍騰文化事業</div><h3>數位行銷企劃</h3><p>LTrust 線上學習平台產品行銷、跨部門操盤知識型 YouTube 品牌(醍醐WAY)數位廣告投放。</p></div><div class="logo-box"><img loading="lazy" class="lg-ltrust" src="exp-ltrust.png" alt="LTrust"></div></div>
-      <div class="job"><div class="when">2024.09 ～ 2025.06</div><div class="node"><span class="dot"></span></div><div class="jc"><div class="co-sm">億達國際(小茶栽堂)</div><h3>行銷企劃</h3><p>品牌行銷、電商檔期整合行銷、官網改版與 Meta／Google 數位廣告投放。</p></div><div class="logo-box"><img loading="lazy" class="lg-tea" src="exp-tea.png" alt="小茶栽堂 Zenique"></div></div>
+      <div class="job"><div class="when">2024.09 ～ 2025.06</div><div class="node"><span class="dot"></span></div><div class="jc"><div class="co-sm">億達國際(小茶栽堂)</div><h3>行銷企劃</h3><p>品牌行銷、電商檔期整合行銷、官網改版與 Meta／Google Ads 數位廣告投放。</p></div><div class="logo-box"><img loading="lazy" class="lg-tea" src="exp-tea.png" alt="小茶栽堂 Zenique"></div></div>
       <div class="job"><div class="when">2022.04 ～ 2024.04</div><div class="node"><span class="dot"></span></div><div class="jc"><div class="co-sm">17LIVE</div><h3>用戶營運與會員行銷</h3><p>APP 營運指標與會員經營，官網儲值率由 55% 升至 75%。</p></div><div class="logo-box"><img loading="lazy" class="lg-17" src="exp-17.png" alt="17LIVE"></div></div>
       <div class="job"><div class="when">2012 ～ 2022</div><div class="node"><span class="dot"></span></div><div class="jc"><div class="co-sm">Loewe／Bottega Veneta／Ferragamo 等</div><h3>資深精品銷售顧問</h3><p>高端客戶經營、BV 亞太區神秘客榮獲 98 分、台北 101 店 Top Sales。</p></div><div class="logo-box"><img loading="lazy" class="lg-bv" src="exp-bv.png" alt="Bottega Veneta"></div></div>
     </div>
@@ -1217,9 +1399,9 @@ h2 .en{font-size:.48em}
         <div class="skill"><h3>品牌合作 <span>Partnerships</span></h3><p>KOC、KOL 洽談、異業合作｜為品牌拓展曝光與資源</p></div>
     </div>
     <div class="creds reveal">
-      <div class="cred"><div class="tag">證照</div><p>Google Ads 搜尋廣告認證 · Google Analytics 個人認證</p></div>
-      <div class="cred"><div class="tag">AI 工具</div><p>ChatGPT · Claude · Gemini(素材與文案發想、AI 圖像生成搭配 Canva 後製、自動化報表與 Dashboard 製作)</p><a class="cred-link" href="#visual">看視覺作品 <span aria-hidden="true">→</span></a></div>
-      <div class="cred"><div class="tag">語言</div><p>中文(母語) · 英文(TOEIC) · 韓文(TOPIK) · 台語(精通)</p></div>
+      <div class="cred"><div class="tag">證照</div><p>Google Ads 搜尋廣告認證、Google Analytics 個人認證</p></div>
+      <div class="cred"><div class="tag">AI 工具</div><p>ChatGPT、Claude、Gemini（素材與文案發想、AI 圖像生成搭配 Canva 後製、自動化報表與 Dashboard 製作）</p><a class="cred-link" href="#visual">看視覺作品 <span aria-hidden="true">→</span></a></div>
+      <div class="cred"><div class="tag">語言</div><p>中文（母語）、英文（TOEIC）、韓文（TOPIK）、台語（精通）</p></div>
     </div>
   </div>
 </section>
@@ -1389,6 +1571,7 @@ h2 .en{font-size:.48em}
       const willOpen=!item.classList.contains('open');
       witems.forEach(o=>{o.classList.remove('open');const b=o.querySelector('.wrow');if(b)b.setAttribute('aria-expanded','false');});
       if(willOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      witems.forEach(o=>{const t=o.querySelector('.pc-more-t');if(t)t.textContent=o.classList.contains('open')?'收合策略':'看完整策略';});
     });
   });
 
@@ -1405,26 +1588,25 @@ h2 .en{font-size:.48em}
     const goTop=(el,off)=>scrollTo({top:el.getBoundingClientRect().top+(window.scrollY||0)-off,behavior:reduce?'auto':'smooth'});
     const openProj=t=>{
       const panel=document.getElementById(t.dataset.proj),item=panel&&panel.closest('.witem');if(!item)return;
-      if(!item.classList.contains('open'))item.querySelector('.wrow').click();
-      tiles.forEach(o=>o.classList.remove('flipped'));
       goTop(item,78);
       setTimeout(()=>{if(Math.abs(item.getBoundingClientRect().top-78)>6)goTop(item,78);},650);
       from=t;armed=false;setTimeout(()=>{armed=true;},1200);showPill();
       try{history.pushState({fromResults:1},'');pushed=true;}catch(e){pushed=false;}
     };
-    const back=()=>{const t=from||tiles[0];hidePill();try{t.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});}catch(e){t.scrollIntoView();}};
-    tiles.forEach(t=>t.addEventListener('click',e=>{
-      e.preventDefault();
-      if(t.dataset.busy)return;t.dataset.busy='1';
-      tiles.forEach(o=>{if(o!==t)o.classList.remove('flipped');});t.classList.add('flipped');
-      setTimeout(()=>{delete t.dataset.busy;openProj(t);},reduce?0:(canHover?120:420));
-    }));
-    document.addEventListener('click',e=>{if(!e.target.closest('a.tile'))tiles.forEach(o=>o.classList.remove('flipped'));});
+    const back=()=>{hidePill();scrollTo({top:0,behavior:reduce?'auto':'smooth'});};
+    tiles.forEach(t=>t.addEventListener('click',e=>{e.preventDefault();openProj(t);}));
     pill.addEventListener('click',back);
     addEventListener('popstate',()=>{pushed=false;if(from)back();});
     const chk=()=>{if(!armed||!from)return;const r=res.getBoundingClientRect();if(r.bottom>innerHeight*.35&&r.top<innerHeight*.6)hidePill();};
     addEventListener('scroll',chk,{passive:true});document.addEventListener('scroll',chk,{passive:true,capture:true});
   })();
+
+  document.querySelectorAll('.pc-media[data-more]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const it=a.closest('.witem');if(it&&!it.classList.contains('open'))it.querySelector('.wrow').click();setTimeout(()=>{const p=it.querySelector('.wpanel');if(p)p.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});},80);}));
+
+  // project index strip: highlight the project currently in view
+  (function(){const its=[...document.querySelectorAll('.pidx-it')];if(!its.length||!('IntersectionObserver' in window))return;
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){its.forEach(a=>a.classList.toggle('on',a.dataset.p===e.target.id));}});},{rootMargin:'-42% 0px -52% 0px'});
+    document.querySelectorAll('.witem.pcard').forEach(a=>io.observe(a));})();
 
   // ---- Visual Works: filter chips -> carousel -> lightbox ----
   // 分類設定：代碼: 顯示名稱。順序 = 按鈕順序。沒有作品的分類不會出現按鈕。
@@ -1485,7 +1667,7 @@ h2 .en{font-size:.48em}
     chips.forEach(ch=>ch.addEventListener('click',()=>setCat(ch.dataset.cat,true)));
     setCat('all',false);
 
-    // lightbox — shared by Visual Works and the projects' 上線紀錄 rows
+    // lightbox - shared by Visual Works and the projects' 上線紀錄 rows
     const box=document.getElementById('vbox'),img=document.getElementById('vboxImg'),
           num=document.getElementById('vboxNum'),ttl=document.getElementById('vboxTitle'),src=document.getElementById('vboxSrc');
     let items=[],li=0,onClose=null;
@@ -1526,7 +1708,7 @@ h2 .en{font-size:.48em}
       let rf=0;row.addEventListener('scroll',()=>{cancelAnimationFrame(rf);rf=requestAnimationFrame(upd);},{passive:true});addEventListener('resize',upd);
       const step=d=>{let i=Math.max(0,Math.min(figs.length-1,idx()+d));row.scrollTo({left:figs[i].offsetLeft-row.offsetLeft,behavior:reduce?'auto':'smooth'});};
       pv.addEventListener('click',()=>step(-1));nx.addEventListener('click',()=>step(1));
-      // when the project panel opens the rail gets a width — refresh then
+      // when the project panel opens the rail gets a width - refresh then
       const wi=row.closest('.witem');if(wi)wi.querySelector('.wrow').addEventListener('click',()=>setTimeout(upd,620));
       upd();
     });
