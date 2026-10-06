@@ -954,6 +954,21 @@ footer .foot-note{flex-basis:100%;margin:6px 0 0;font-family:var(--han);font-siz
 .pidx-it.on .pidx-tx span{font-weight:700;color:var(--olive-deep)}
 /* contact info: align the plain-text value with the link values */
 .cinfo .item a,.cinfo .item span{display:inline-block;padding:8px 0;line-height:1.5;vertical-align:top}
+
+/* robust "contain" framing (iOS Safari doesn't resolve max-height:% inside aspect-ratio boxes → images got cropped) */
+.pc-media{position:relative}
+.pc-media img{position:absolute;top:var(--pad-m);left:var(--pad-m);width:calc(100% - 2*var(--pad-m))!important;height:calc(100% - 2*var(--pad-m))!important;
+  max-width:none!important;max-height:none!important;object-fit:contain;border-radius:0;box-shadow:none;filter:drop-shadow(0 12px 18px rgba(37,32,25,.28))}
+.pc-media{--pad-m:clamp(18px,2.2vw,32px)}
+.pidx-th{position:relative;--pad-m:clamp(10px,1vw,14px)}
+.pidx-th img{position:absolute;top:var(--pad-m);left:var(--pad-m);width:calc(100% - 2*var(--pad-m))!important;height:calc(100% - 2*var(--pad-m))!important;
+  max-width:none!important;max-height:none!important;object-fit:contain;border-radius:0;box-shadow:none;filter:drop-shadow(0 6px 10px rgba(37,32,25,.25))}
+@media(max-width:860px){.pc-media{aspect-ratio:1/1;--pad-m:18px}}
+@media(max-width:760px){
+  .vframe{position:relative}
+  .vframe img{position:absolute;top:var(--mat);left:var(--mat);width:calc(100% - 2*var(--mat))!important;height:calc(100% - 2*var(--mat))!important;
+    max-width:none;max-height:none;object-fit:contain;border-radius:0;box-shadow:none;filter:drop-shadow(0 8px 14px rgba(37,32,25,.3))}
+}
 /* anchor offset: land the section heading just under the fixed nav
    (was: html scroll-padding 78px + section scroll-margin 78px = double offset, plus the section's top padding) */
 html{scroll-padding-top:0}
